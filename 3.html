@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head> <meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var surname = prompt("enter surname ").split('');
+		var s = 0;
+		var b = ['а','о','у','ы','э','я','ё','ю','и','е'];
+			for (var i = 0; i<b.length; i++){
+				for (var j = 0; j<surname.length; j++){
+					if (b[i]==surname[j])
+						s++
+				}
+			}
+			alert("Кол-во гласных = " + s);
+			alert("Кол-во Согласных = " + (surname.length - s));
+	</script>
+
+</body>
+</html>
