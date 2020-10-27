@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	  
+var a = parseInt(prompt("Введите тип соединения (1 - послед.; 2 - парал."))
+var b = parseInt(prompt("Введите сопротивления R1 "))
+var c = parseInt(prompt("Введите сопротивления R2 "))
+
+switch(a) {
+	case 1: alert("Ответ " + parseInt(b+c));
+	break;
+	case 2:
+	alert("Ответ "+ parseInt(1/(1/(b)+1/(c))));
+	break;
+	default:
+	alert("Выбериите тип соединения ")
+} 
+	</script>
+</body>
+</html>
