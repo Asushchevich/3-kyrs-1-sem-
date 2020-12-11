@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 12</title>
+</head>
+
+<body>
+	<h1 align="center">Программа проверит, является ли введённая строка палиндромом</h1>
+
+
+	Введите вашу строку:<br><input type="text" id='strText' size=40>
+
+	<button onClick='userSubmit()'
+		style="background-color: rgb(29, 218, 38); color: rgb(236, 103, 93);">Вычислить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _text = document.getElementById('strText').value;
+			if(_text === "")
+			{
+				document.getElementById('result').innerHTML = "Введена пустая строка";
+			}
+			else
+			{
+				document.getElementById('result').innerHTML = PrintRezult(_text);
+			}
+		}
+
+		
+		function isPalindromWithRegister(text) 
+		{
+			let _string = modifyText(text);
+			return _string === _string.split('').reverse().join('');
+		}
+
+		
+		function isPalindromWithoutRegister(text) 
+		{
+			let _string = modifyText(text).toUpperCase();
+			return _string === _string.split('').reverse().join('');
+		}
+
+		 
+		function modifyText(text) 
+		{
+			let _modifyText;
+
+			_modifyText = text.replace(/\s+/g, '').trim();
+			return _modifyText;
+		}
+
+		
+		function PrintRezult(text) 
+		{
+			let _palindromWithRegister = isPalindromWithRegister(text) ? "является" : "не является"
+			let _palindromWithoutRegister = isPalindromWithoutRegister(text) ? "является" : "не является"
+
+			return "C учётом регистра палиндромом " + _palindromWithRegister+
+				"<br>" + "Без учётом регистра палиндромом " + _palindromWithoutRegister;
+		}
+	</script>
+</body>
+
+</html>
