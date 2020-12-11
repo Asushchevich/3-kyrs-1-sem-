@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Практика 13</title>
+</head>
+
+<body>
+	<h1 align="center">Программа проверит корректность ввода адреса электронной почты</h1>
+
+	Введите вашу почту:<br><input type="text" id='email' size=40>
+
+	<button onClick='userSubmit()'
+		style="background-color: rgb(29, 218, 38); color: rgb(236, 103, 93);">Проверить</button><br>
+	<P>
+	<div id='result'></div>
+
+	<script type='text/javascript'>
+		function userSubmit() 
+		{
+			let _email = document.getElementById('email').value;
+
+			document.getElementById('result').innerHTML = isEmail(_email);
+
+		}
+
+		function isEmail(email) 
+		{
+			let _rezult = HasDog(email) + MinLength(email) +
+				HasSymbolLeftDog(email) + HasDotRightDog(email) +
+				HasTwoSymbolRightDot(email) + HasTwoSymbolBetweenDogAndDot(email);
+			if (_rezult == "") 
+			{
+				return "Введен корректный email";
+			}
+			else 
+			{
+				return _rezult;
+			}
+		}
+
+		// Проверка на наличие символа «@»
+		function HasDog(email) 
+		{
+			if (email.includes('@')) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать символ «@»;<br>";
+			}
+		}
+
+		// Проверка на минимальный размер адреса - 6 символов
+		function MinLength(email) 
+		{
+			if (email.length >= 6) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать минимум 6 символов;<br>";
+			}
+		}
+
+		// Проверка, что слева от символа «@» есть, как минимум, один символ
+		function HasSymbolLeftDog(email) 
+		{
+			let _positionDog = 0;
+			for (var i = 0; i < email.length; i++) 
+			{
+				if (email[i] == "@") 
+				{
+					_positionDog = i;
+					break;
+				}
+			}
+			if (_positionDog > 0) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать, как минимум, один символ слева от символа «@»;<br>";
+			}
+		}
+
+		// Проверка, что справа от символа «@» есть, как минимум, одна точка
+		function HasDotRightDog(email) 
+		{
+			let _positionDog = 0;
+			let _hasDot = false;
+			for (var i = 0; i < email.length; i++) 
+			{
+				if (email[i] == "@") 
+				{
+					_positionDog = i;
+					break;
+				}
+			}
+
+			for (var i = _positionDog; i < email.length; i++) 
+			{
+				if (email[i] == ".") 
+				{
+					_hasDot = true;
+				}
+			}
+
+			if (_hasDot) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать, как минимум, одну точку справа от символа «@»;<br>";
+			}
+		}
+
+		// Проверка, что справа от последней точки есть, как минимум, два символа
+		function HasTwoSymbolRightDot(email) 
+		{
+			let _positionLastDot = 0;
+			for (var i = 0; i < email.length; i++) 
+			{
+				if (email[i] == ".") 
+				{
+					_positionLastDot = i;
+				}
+			}
+			if (email.length - _positionLastDot > 2) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать, как минимум, два символа справа от последней точки;<br>";
+			}
+		}
+
+		// Проверка, что между символом «@» и следующей за ним точкой есть, как минимум, один символ
+		function HasTwoSymbolBetweenDogAndDot(email) 
+		{
+			let _positionDog = 0;
+			let _positionDot = 0;
+			for (var i = 0; i < email.length; i++) 
+			{
+				if (email[i] == "@") 
+				{
+					_positionDog = i;
+					break;
+				}
+			}
+
+			for (var i = _positionDog; i < email.length; i++) 
+			{
+				if (email[i] == ".") 
+				{
+					_positionDot = i;
+					break;
+				}
+			}
+
+			if (_positionDot - _positionDog > 1) 
+			{
+				return "";
+			}
+			else 
+			{
+				return "Email должен содержать, как минимум, один символ между символом «@» и следующей за ним точкой;<br>";
+			}
+		}
+	</script>
+</body>
+
+</html>
